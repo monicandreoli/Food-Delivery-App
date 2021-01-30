@@ -29,11 +29,11 @@ class BaseRepository
       @elements.each do |element|
         csv << csv_row(element)
       end
-    end 
+    end
   end
 
   def load_csv
-    csv_options = {headers: :first_row, header_converters: :symbol}
+    csv_options = { headers: :first_row, header_converters: :symbol }
     CSV.foreach(@csv_file, csv_options) do |row|
       build_element(row)
     end

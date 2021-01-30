@@ -22,7 +22,7 @@ class MealsController
     price = @meals_view.ask_for_price
 
     # Make a new meal from the input
-    new_meal = Meal.new({name: name, price: price})
+    new_meal = Meal.new({ name: name, price: price })
     # Store my new meal inside the repository -> Repository
     @meals_repository.create(new_meal)
   end

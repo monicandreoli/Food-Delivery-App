@@ -1,12 +1,13 @@
 class Router
-  def initialize(meals_controller, customers_controller, sessions_controller)
+  def initialize(meals_controller, customers_controller, sessions_controller, orders_controller)
     @meals_controller = meals_controller
     @customers_controller = customers_controller
     @sessions_controller = sessions_controller
+    @orders_controller = orders_controller
     @running = true
   end
 
-   def run
+  def run
     while @running
       @current_user = @sessions_controller.sign_in
       while @current_user
@@ -36,6 +37,8 @@ class Router
     puts "2 - Add a meal"
     puts "3 - List all customers"
     puts "4 - Add a customer"
+    puts "5 - List all undelivered orders"
+    puts "6 - Create a new order"
     puts "8 - Log out"
     puts "9 - Quit"
     print "> "
@@ -48,8 +51,10 @@ class Router
     when 2 then @meals_controller.add
     when 3 then @customers_controller.list
     when 4 then @customers_controller.add
+    when 5 then @orders_controller.list
+    when 6 then @orders_controller.add
     when 8 then @current_user = nil
-    when 9 then 
+    when 9
       @current_user = nil
       @running = false
     else
@@ -81,7 +86,7 @@ class Router
     when 1 then puts "TODO"
     when 2 then puts "TODO"
     when 8 then @current_user = nil
-    when 9 then 
+    when 9
       @current_user = nil
       @running = false
     else
